@@ -35,6 +35,7 @@ namespace HDF5
             try
             {
                 // Filenmae request
+
                 String fileName;
                 Console.WriteLine("Wie soll die HDF5 Datei heissen?");
                 fileName = Console.ReadLine() + ".h5";
