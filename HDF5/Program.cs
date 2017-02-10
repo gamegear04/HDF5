@@ -15,6 +15,10 @@
 //
 // 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Naming Guidelines =)
+// https://msdn.microsoft.com/de-de/library/xzf533w0(v=vs.71).aspx
+
 using System;
 using System.Data;
 using System.Threading;
@@ -23,20 +27,34 @@ using HDF5DotNet;
 
 namespace HDF5
 {
-    class Program
+    class Hdf5Program
     {
         static void Main(string[] args)
         {
-            //<<---MENU-------------------------------------------------->>
+            Hdf5Program Func = new Hdf5Program();
 
+            //<<---MENU-------------------------------------------------->>
+            //while (true)
+            //{
+                switch (Func.Menu())
+                {
+                    case 0:
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        Console.WriteLine("Ihre Eingaben konnnte nicht zugeordnet werden");
+                        break;
+                }
+            //}
 
             //<<---CREATE------------------------------------------------>>
             // Create an HDF5 file
             try
             {
-                // Filenmae request
+                // Filename request
                 String fileName;
-                Console.WriteLine("Wie soll die HDF5 Datei heissen?");
+                Console.
+                WriteLine("Wie soll die HDF5 Datei heissen?");
                 fileName = Console.ReadLine() + ".h5";
 
                 H5FileId fildId = H5F.create(fileName, H5F.CreateMode.ACC_TRUNC);
@@ -62,8 +80,8 @@ namespace HDF5
             try
             {
                 H5FileId fildId = H5F.open("Meins.h5", H5F.OpenMode.ACC_RDONLY);
-                H5DataSetId daten = H5D.open(fildId,"/meins" );
-                Console.WriteLine(daten);
+                H5DataSetId date = H5D.open(fildId,"/meins" );
+                Console.WriteLine(date);
                 Thread.Sleep(2000);
             }
             catch(HDFException ex)
@@ -75,7 +93,19 @@ namespace HDF5
 
 
         }
-
+        
+        // Menu
+        private int Menu()
+        {
+            int choice;
+            
+            Console.WriteLine("Fraunhofer -IOSB");
+            Console.WriteLine("0 Programm beenden");
+            Console.WriteLine("\nTreffen Sie Ihre Wahl:");
+            choice = int.Parse( Console.ReadLine());
+            
+            return choice;
+        }
 
     }
 }
